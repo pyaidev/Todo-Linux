@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="rom">
+    <div class="col-md-6">
+        <ul style="list-style: none; color: red;">
+            {% for message in messages %}
+
+                <li>
+                    {{ message }}
+                </li>
+
+            {% endfor %}
+
+        </ul>
+
+        <form method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <br>
+
+            {{ form.as_p }}
+
+            {% if obj %}
+            <a href="/todo/{{ obj.id }}"> {{ obj.tile }} - {{ obj.content }} </a>
+             {% else %}
+                  <br>
+                  <div class="d-grip gap-2">
+                      <button type="submit" class="btn btn-primary">Create Article</button>
+ 
+                  </div>
+            <br>
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}
